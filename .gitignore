@@ -1,0 +1,13 @@
+node_modules
+venv
+.idea
+.directory
+build
+__pycache__
+migrations
+**/node_modules
+**/venv
+**/.idea
+**/build
+**/__pycache__
+**/migrations

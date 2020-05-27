@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  postgres:
+    restart: always
+    image: postgres:latest
+    environment: 
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+     
+  django:
+    build: ./weather_app
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    volumes:
+      - ./weather_app:/usr/src/weather_app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    links:
+      - postgres:postgres
+
+  front:
+    build: ./weather_app/front
+    volumes:
+      - ./weather_app/front:/usr/src/app
+    ports:
+      - 3001:3000
+    depends_on:
+      - django
+    environment:
+      - CHOKIDAR_USEPOLLING=true  
+    stdin_open: true  
+
+volumes:
+  pgdata:
+
+   
