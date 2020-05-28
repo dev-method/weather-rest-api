@@ -11,6 +11,5 @@ from params.models import Weather_Params
 meteostat_api = "https://api.meteostat.net/v1/history/daily?station=10637&start=2019-01-01&end=2020-01-01&key=dyOSKQLL"
 request = requests.get(meteostat_api)
 api_data = request.json()['data']
-print(api_data)
 for i in api_data:
     Weather_Params.objects.create(date=i['date'], temp=i['temperature'], wind=i['windspeed'], pressure=i['pressure'])
