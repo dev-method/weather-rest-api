@@ -1,7 +1,7 @@
 import os
 import sys
-sys.path.insert(0, '/home/vladimir/Projects/weather_app/weather_app')
-sys.path.append("/home/vladimir/Projects/weather_app/weather_app")
+sys.path.insert(0, '/usr/src/weather_app/weather_app')
+sys.path.append("/usr/src/weather_app/weather_app")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "weather_app.settings")
 import django
 django.setup()
